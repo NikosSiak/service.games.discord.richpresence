@@ -8,6 +8,7 @@ if __name__ == "__main__":
     monitor = xbmc.Monitor()
     player = xbmc.Player()
     discord = discordIPC.DiscordIPC(CLIENT_ID)
+    startTime = -1
 
     while True:
         monitor.waitForAbort(5)
@@ -16,14 +17,17 @@ if __name__ == "__main__":
             break
         
         if player.isPlayingGame():
+            if startTime == -1:
+                startTime = int(time.time())
+
             data = player.getGameInfoTag()
             activity = {
                 'assets': {'large_image': 'kodi', 'large_text': 'Kodi'},
                 'state': data.getTitle(),
                 'details': data.getCaption(),
-                'timestamps': {'start': time.time()}
+                'timestamps': {'start': startTime}
             }
             discord.update_activity(activity)
         else:
             # close discord if it's connected 
-            pass
+            startTime = -1
