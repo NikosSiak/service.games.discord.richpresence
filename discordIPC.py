@@ -18,6 +18,7 @@ class DiscordIPC:
         self.client_id = client_id
         self.pid = os.getpid()
         self._connect()
+        self.connected = True
 
     def _connect(self):
         if self.isWindows:
@@ -74,10 +75,14 @@ class DiscordIPC:
 
 
     def close(self):
-        try:
-            self._send(OP_CLOSE, {})
-        finally:
-            self.descriptor.close()
+        if self.connected:
+            try:
+                self._send(OP_CLOSE, {})
+            except:
+                pass
+            finally:
+                self.descriptor.close()
+            self.connected = False
 
     def update_activity(self, activity):
         payload = {
