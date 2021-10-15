@@ -10,5 +10,9 @@
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
         <source>https://github.com/NikosSiak/service.games.discord.richpresence</source>
+        <assets>
+            <icon>resources/icon.png</icon>
+            <fanart>resources/fanart.jpg</fanart>
+        </assets>
     </extension>
 </addon>
