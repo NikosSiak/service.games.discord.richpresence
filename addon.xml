@@ -14,5 +14,8 @@
             <icon>resources/icon.png</icon>
             <fanart>resources/fanart.jpg</fanart>
         </assets>
+        <summary lang="en_GB">Display the state of the game you are playing to Discord.</summary>
+        <description lang="en_GB">For the rich presence to work you must be logged in to the RetroAchievements account from Setting/Games/Achievements</description>
+        <license>GPL-2.0-only</license>
     </extension>
 </addon>
